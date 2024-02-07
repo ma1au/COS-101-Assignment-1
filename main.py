@@ -32,6 +32,7 @@ def check_answer(choice):
         button.config(state="disabled")
     next_btn.config(state="normal")
 
+
 # Function to Restart the Quiz
 def restart_quiz():
     global current_question, score
@@ -48,6 +49,7 @@ def restart_quiz():
     # Display the first question
     show_question()
 
+
 # Function to move on to the next question or end the quiz if the questions have finished
 def next_question():
     global current_question
@@ -63,3 +65,30 @@ def next_question():
         messagebox.showinfo("QUIZ COMPLETED",
                             "QUIZ COMPLETED! Final Score: {}/{}".format(score, len(quiz_data)))
         root.destroy()
+
+
+root = tk.Tk()
+root.title("Quiz App")
+root.geometry("600x600")
+# change 'y' to 600
+style = Style(theme="flatly")
+style.configure("TLabel", font=("Helvetica", 20))
+style.configure("TButton", font=("Helvetica", 16))
+
+qs_label = ttk.Label(
+    root,
+    anchor="center",
+    wraplength=500,
+    padding=10
+)
+qs_label.pack(pady=10)
+
+choice_btns = []
+for i in range(4):
+    button = ttk.Button(
+        root,
+        command=lambda i=i: check_answer(i)
+    )
+    button.pack(pady=10)
+    choice_btns.append(button)
+
